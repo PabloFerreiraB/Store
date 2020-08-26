@@ -23,6 +23,9 @@ namespace API
         {
           var context = services.GetRequiredService<StoreContext>();
           await context.Database.MigrateAsync();
+
+          // populando as tabelas do banco
+          await StoreContextSeed.SeedAsync(context, loggerFactory);
         }
         catch (Exception ex)
         {
